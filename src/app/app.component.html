@@ -1,0 +1,16 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <button mat-button [matMenuTriggerFor]="menu" color="primary"><mat-icon>menu</mat-icon></button>
+    <mat-menu #menu="" color="primary">
+      <a mat-menu-item [routerLink]="['/']"><mat-icon>alarm_on</mat-icon> Waiting for Validation</a>
+      <a mat-menu-item [routerLink]="['/process']"><mat-icon>account_box</mat-icon> Request Validate</a>
+    </mat-menu> 
+  </div>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+</div>

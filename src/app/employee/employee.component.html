@@ -1,0 +1,75 @@
+<div style="text-align: right;">
+<a mat-raised-button color="primary"
+      matBadge="{{valD?.length || '0'}}" matBadgePosition="before" matBadgeColor="accent">
+      Waiting for Validation
+</a>
+</div>
+<mat-accordion>
+    <div class="example-loading-shade" *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <mat-expansion-panel *ngFor="let val of valD">
+      <mat-expansion-panel-header color="accent">
+        <mat-panel-title>
+          Vehicule {{val.vehicule.vehiculeId}}: {{val.vehicule.brand}}, vendu le {{val.recordingDate|date: 'dd,MM,yyyy'}}
+        </mat-panel-title>
+        <mat-panel-description>
+          A {{val.vehicule.person.fullName}}, {{val.vehicule.person.adress1}}, {{val.vehicule.person.cp}}, {{val.vehicule.person.ville}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div style="text-align: right;" class="mat-24 example-button-row ">
+        <a mat-button color="primary" (click)="setValidation(val, '1')">Validate</a>
+        <a mat-button color="warn" (click)="setValidation(val, '0')">Invalidate</a>
+      </div>
+      <div>
+        <mat-grid-list cols="2" rowHeight="350px">
+          <mat-grid-tile>
+            <mat-card>
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"><mat-icon>alarm_on</mat-icon></div>
+                <mat-card-title>{{val.vehicule.person.fullName}}</mat-card-title>
+                <mat-card-subtitle>{{val.vehicule.person.typePerson}}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <dl>
+                  <dt>mail:</dt>
+                  <dd>{{val.vehicule.person.mail}}</dd>
+                  <dt>Date Naissance:</dt>
+                  <dd>{{val.vehicule.person.dateNaiss|date: 'dd,MM,yyyy'}}</dd>
+                  <dt>Lieu Naissance:</dt>
+                  <dd>{{val.vehicule.person.lieuNaiss}}</dd>
+                  <dt>Siren:</dt>
+                  <dd>{{val.vehicule.person.siren}}</dd>
+                  <dt>Portable:</dt>
+                  <dd><h2>{{val.vehicule.person.portable}}</h2></dd>
+                </dl>
+              </mat-card-content>
+            </mat-card> 
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card class="example-card">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"><mat-icon>car</mat-icon></div>
+                <mat-card-title>{{val.vehicule.vehiculeId}}</mat-card-title>
+                <mat-card-subtitle>{{val.vehicule.type}}</mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <dl>
+                  <dt>datePurchase:</dt>
+                  <dd>{{val.vehicule.datePurchase|date: 'dd,MM,yyyy'}}</dd>
+                  <dt>numberCertifica:</dt>
+                  <dd>{{val.vehicule.numberCertifica}}</dd>
+                  <dt>comercialDenomination:</dt>
+                  <dd>{{val.vehicule.comercialDenomination}}</dd>
+                  <dt>location:</dt>
+                  <dd>{{val.vehicule.location}}</dd>
+                  <dt>color:</dt>
+                  <dd><h2>{{val.vehicule.color}}</h2></dd>
+                </dl>
+              </mat-card-content>
+            </mat-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
